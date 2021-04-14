@@ -10,6 +10,7 @@
   * [License](#license)
   * [Questions](#questions)
 <br>
+
 ### Input
 Users only need to answer the question prompts on their terminal for their md file to be generated.
 
