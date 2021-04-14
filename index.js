@@ -12,9 +12,9 @@ const questions = [
     },
     {
         type: 'list',
-        name: 'licenses',
+        name: 'license',
         message: 'What licenses would you like to add?',
-        choices: ['MIT','BSD 3','APACHE 2.0','None'],
+        choices: ['MIT','BSD 3','APACHE 2.0'],
     },
     {
         type: 'input',
@@ -30,6 +30,11 @@ const questions = [
         type: 'input',
         name: 'usageInfo',
         message: 'What is the usage information?',
+    },
+    {
+        type: 'input',
+        name: 'test',
+        message: 'Testing?',
     },
     {
         type: 'input',
@@ -50,14 +55,15 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data, null, '\t'), (err) => err ? console.log(err): console.log('READ ME CREATED!')
+    fs.writeFile(fileName, data, (err) => err ? console.log(err): console.log('READ ME CREATED!')
      );
 };
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then((input) => {
-        writeToFile('README.md', input);
+    inquirer.prompt(questions)
+    .then((input) => {
+        writeToFile('README.md', markdown.generateMarkdown(input));
     })
 }
 
